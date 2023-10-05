@@ -1,0 +1,11 @@
+{
+  "Name": "OV Chipkaart Alstublieft",
+  "Description": "Jij bent de conducteur, en het is jouw taak om te checken of iedereen wel is ingechecked of niet.",
+  "Authors": [
+    "Justin van Diggelen",
+    "Didier Vermunt"
+  ],
+  "NameExe": "Ov-chipkaart Alstublieft",
+  "NameFolder": "OVChipkaartPlease"
+
+}

@@ -1,0 +1,36 @@
+﻿@using ArcadeLauncher.Models;
+@using Microsoft.AspNetCore.Components.Web
+@using ArcadeLauncher.Services;
+@inject GameService gameservice;
+
+@{
+    Game[] games = gameservice.GetAllManifests();
+}
+<h3>CountComponent</h3>
+
+@foreach(Game game in games)
+{
+    <button class="tooltip btn btn-primary" @onclick="() => OpenExe(game)">Start @game.Name <span class="tooltiptext">@game.Description</span></button>
+}
+
+@code {
+    private int currentCount = 0;
+    private string gameName;
+    private string gameDesc;
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // GetGameName();
+        // GetGameDescription();
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void OpenExe(Game game)
+    {
+        gameservice.OpenExe(game);
+    }
+}
