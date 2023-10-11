@@ -6,31 +6,31 @@
 @{
     Game[] games = gameservice.GetAllManifests();
 }
-<h3>CountComponent</h3>
+<h3>Arcade Menu</h3>
 
 @foreach(Game game in games)
 {
-    <button class="tooltip btn btn-primary" @onclick="() => OpenExe(game)">Start @game.Name <span class="tooltiptext">@game.Description</span></button>
+    ObtainImage(game);
+    <button style="background-image: url(@imgSrc) "class="tooltip btn btn-primary play-btn" @onclick="() => OpenExe(game)"></button>
 }
 
 @code {
     private int currentCount = 0;
     private string gameName;
     private string gameDesc;
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        // GetGameName();
-        // GetGameDescription();
-    }
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+    private string imageBase64;
+    private string imgSrc = "";
 
     private void OpenExe(Game game)
     {
         gameservice.OpenExe(game);
+    }
+
+    private void ObtainImage(Game game)
+    {
+        imageBase64 = gameservice.ShowImage(game);
+
+        imgSrc = String.Format("data:image/gif;base64,{0}", imageBase64);
     }
 }

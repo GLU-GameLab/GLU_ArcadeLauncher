@@ -24,6 +24,18 @@ body {
     opacity: 1;
 }
 
+.hidden{
+    display: none;
+}
+
+.play-btn{
+    background-color: blue;
+    margin: 10px;
+    background-size: cover;
+    height: 20vh;
+    width: 20vh;
+}
+
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 240px;
