@@ -11,7 +11,7 @@
 @foreach(Game game in games)
 {
     ObtainImage(game);
-    <button style="background-image: url(@imgSrc) "class="tooltip btn btn-primary play-btn" @onclick="() => OpenExe(game)"></button>
+    <button style="background-image: url(@imgSrc) "class="tooltip btn btn-primary play-btn button-center" @onclick="() => OpenExe(game)"></button>
 }
 
 @code {

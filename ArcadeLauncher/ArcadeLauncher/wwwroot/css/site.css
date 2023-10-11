@@ -36,6 +36,25 @@ body {
     width: 20vh;
 }
 
+.button-center {
+    position: relative;
+    top: 50px
+
+}
+
+.info-board {
+    display: flex;
+    background-color: #967bb6;
+    margin: 2em;
+    background-size: cover;
+    border-radius: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40%;
+    width: calc(100% - 4em);
+}
+
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 240px;
