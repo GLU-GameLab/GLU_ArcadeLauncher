@@ -7,5 +7,6 @@
         public string[] Authors { get; set; }
         public string NameExe { get; set; }
         public string CompleteFolder;
+        public string BackgroundColor { get; set; }
     }
 }

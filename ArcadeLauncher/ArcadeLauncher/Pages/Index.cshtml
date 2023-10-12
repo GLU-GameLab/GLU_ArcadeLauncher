@@ -6,17 +6,15 @@
 
 }
 
-<div id="StartText" class="text-center">
+<div style="" id="StartText" class="text-center">
     <h2>Press the start button to play!</h2>
 </div>
 
 <div id="MenuText" class="text-center hidden">
     @(await Html.RenderComponentAsync<ButtonsComponent>(RenderMode.Server))
-        <div class="info-board">
-            <div>
-                
-            </div>
-        </div>
+    </div>
+
+
 </div> 
 
 <script>

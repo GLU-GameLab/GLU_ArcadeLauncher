@@ -2,6 +2,19 @@ html {
   font-size: 14px;
 }
 
+@font-face {
+    font-family: boldlineRegular;
+    src: url(/Fonts/Boldine.ttf);
+}
+
+.font-text{
+    font-family: boldlineRegular;
+}
+
+.big-text{
+    font-size: 35px;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -13,27 +26,41 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+#backgroundimage {
+    background: url("images/background.jpg");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
 }
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-    opacity: 1;
+.info-padding{
+    padding: 2em;
+    text-align: center;
+    letter-spacing: 3px;
 }
 
 .hidden{
-    display: none;
+    display: none !important;
 }
 
-.play-btn{
-    background-color: blue;
+.play-btn {
+    all:unset;
     margin: 10px;
     background-size: cover;
     height: 20vh;
     width: 20vh;
+    display: inline-block;
+    opacity: 1;
+    border: none;
+    border-radius: 15px;
+}
+
+.top-padding{
+    padding-top: 40px;
+}
+
+.play-btn:focus {
+    box-shadow: 0 0 30px 15px var(--mainColor);
 }
 
 .button-center {
@@ -43,8 +70,8 @@ body {
 }
 
 .info-board {
-    display: flex;
-    background-color: #967bb6;
+    background-color: #967bb67d !important;
+    box-shadow: 0 0 10px 10px #967bb67d;
     margin: 2em;
     background-size: cover;
     border-radius: 40px;
@@ -55,31 +82,11 @@ body {
     width: calc(100% - 4em);
 }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 240px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 2px;
-    position: absolute;
-    z-index: 1;
-    top: 150%;
-    left: 50%;
-    margin-left: -120px;
+#StartText {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-    .tooltip .tooltiptext::after {
-        content: "";
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: transparent transparent black transparent;
-    }
-
-    .tooltip:hover .tooltiptext {
-        visibility: visible;

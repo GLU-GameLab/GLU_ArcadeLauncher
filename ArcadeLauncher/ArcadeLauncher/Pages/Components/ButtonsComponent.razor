@@ -7,16 +7,32 @@
     Game[] games = gameservice.GetAllManifests();
 }
 
-@foreach(Game game in games)
-{
-    ObtainImage(game);
-    <button style="background-image: url(@imgSrc) "class="tooltip btn btn-primary play-btn button-center" @onclick="() => OpenExe(game)"></button>
+<div class="">
+    <div class="top-padding">
+        @for (int i = 0; i < games.Length; i++)
+        {
+            Game game = games[i];
+            ObtainImage(game);
+            <button style="background-image: url(@imgSrc); --mainColor: @game.BackgroundColor; " loading="lazy" data-index="@(1 + i)" class="play-btn" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)"></button>
+        }
+    </div>
+</div>
 
 
-}
+<div class="info-board info-padding">
+    <div class="font-text big-text">
+        @gameName
+        <div class="font-text">
+            @gameDesc
+        </div>
 
+    </div>
+</div>
 @code {
     private int currentCount = 0;
+
+    private string gameDesc;
+    private string gameName;
 
     private string imageBase64;
     private string imgSrc = "";
@@ -24,6 +40,12 @@
     private void OpenExe(Game game)
     {
         gameservice.OpenExe(game);
+    }
+
+    private void SetInfo(Game game)
+    {
+        gameDesc = game.Description;
+        gameName = game.Name;
     }
 
     private void ObtainImage(Game game)
