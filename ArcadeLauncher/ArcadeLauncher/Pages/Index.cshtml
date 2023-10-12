@@ -3,6 +3,7 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Arcade Machine Menu";
+
 }
 
 <div id="StartText" class="text-center">
@@ -10,9 +11,11 @@
 </div>
 
 <div id="MenuText" class="text-center hidden">
-    @(await Html.RenderComponentAsync<CountComponent>(RenderMode.Server))
+    @(await Html.RenderComponentAsync<ButtonsComponent>(RenderMode.Server))
         <div class="info-board">
-
+            <div>
+                
+            </div>
         </div>
 </div> 
 
@@ -75,8 +78,6 @@
         }
         focusableElements[current].focus();
     }
-
-
 </script>
 
 

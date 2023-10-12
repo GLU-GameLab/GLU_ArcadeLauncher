@@ -6,18 +6,17 @@
 @{
     Game[] games = gameservice.GetAllManifests();
 }
-<h3>Arcade Menu</h3>
 
 @foreach(Game game in games)
 {
     ObtainImage(game);
     <button style="background-image: url(@imgSrc) "class="tooltip btn btn-primary play-btn button-center" @onclick="() => OpenExe(game)"></button>
+
+
 }
 
 @code {
     private int currentCount = 0;
-    private string gameName;
-    private string gameDesc;
 
     private string imageBase64;
     private string imgSrc = "";
