@@ -13,9 +13,20 @@ namespace ArcadeLauncher.Services
 
         public string[] GetAllFolders()
         {
-            string folderPath = Path.Combine(env.WebRootPath, "Executes");
-            string[] foldersFound = Directory.GetDirectories(folderPath);
-            return foldersFound;
+            string folderPath = Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.ApplicationData), "GluArcadeLauncher");
+
+            if(Directory.Exists(folderPath))
+            {
+                string[] foldersFound = Directory.GetDirectories(folderPath);
+                return foldersFound;
+            }
+            else
+            {
+                Directory.CreateDirectory(folderPath);
+                return Array.Empty<string>();
+            }
+
         }
         public Game[] GetAllManifests()
         {
@@ -28,6 +39,8 @@ namespace ArcadeLauncher.Services
                 if (File.Exists(manifestpath))
                 {
                     Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(manifestpath));
+                    if (game is null)
+                        continue;
                     game.CompleteFolder = folders[i];
                     manifests.Add(game);
                 }
@@ -44,7 +57,10 @@ namespace ArcadeLauncher.Services
 
         public string ShowImage(Game gameFolder)
         {
-            byte[] imageArray = System.IO.File.ReadAllBytes(Path.Combine(gameFolder.CompleteFolder, "icon.png"));
+            var filepath = Path.Combine(gameFolder.CompleteFolder, "icon.png");
+            if (!File.Exists(filepath))
+                return string.Empty;
+            byte[] imageArray = System.IO.File.ReadAllBytes(filepath);
             string base64Image = Convert.ToBase64String(imageArray);
             return base64Image;
         }
