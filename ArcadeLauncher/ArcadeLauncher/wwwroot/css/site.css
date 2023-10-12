@@ -76,10 +76,10 @@ html {
     background-size: cover;
     border-radius: 40px;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 40%;
-    width: calc(100% - 4em);
+    right:0;
+    top:0;
+    height: calc(100% - 4em);
+    width: 35em;
 }
 
 #StartText {

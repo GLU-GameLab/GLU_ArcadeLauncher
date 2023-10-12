@@ -8,12 +8,12 @@
 }
 
 <div class="">
-    <div class="top-padding">
+    <div class="top-padding slick-track game-track">
         @for (int i = 0; i < games.Length; i++)
         {
             Game game = games[i];
             ObtainImage(game);
-            <button style="background-image: url(@imgSrc); --mainColor: @game.BackgroundColor; " loading="lazy" data-index="@(1 + i)" class="play-btn" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)"></button>
+            <button style="background-image: url(@imgSrc); --mainColor: @game.BackgroundColor; " class="play-btn" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)"></button>
         }
     </div>
 </div>
