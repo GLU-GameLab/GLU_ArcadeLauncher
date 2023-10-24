@@ -44,7 +44,7 @@ namespace ArcadeLauncher.Services
         {
             Process[] processList = Process.GetProcessesByName(gameFolder.Manifest.NameExe);
             if (processList.Length == 0)
-                Process.Start(Path.Combine(gameFolder.GamePath, gameFolder.Manifest.NameExe + ".exe"));
+                currentProcess = Process.Start(Path.Combine(executable.CompleteFolder, executable.NameExe + ".exe"));
         }
 
         public string ShowImage(GameInfo gameFolder)
@@ -52,6 +52,11 @@ namespace ArcadeLauncher.Services
             byte[] imageArray = System.IO.File.ReadAllBytes(Path.Combine(gameFolder.GamePath, "icon.png"));
             string base64Image = Convert.ToBase64String(imageArray);
             return base64Image;
+        }
+
+        internal void CloseGame()
+        {
+            currentProcess?.Close();
         }
     }
 }
