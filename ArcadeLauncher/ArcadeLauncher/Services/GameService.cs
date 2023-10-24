@@ -1,4 +1,5 @@
 ﻿using ArcadeLauncher.Models;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Diagnostics;
 namespace ArcadeLauncher.Services
@@ -6,9 +7,12 @@ namespace ArcadeLauncher.Services
     public class GameService
     {
         public IWebHostEnvironment env;
-        public GameService(IWebHostEnvironment environment)
+        public GamesData gamesData;
+        public GameService(IWebHostEnvironment environment, IServiceProvider provider)
         {
             env = environment;
+            this.gamesData = provider.CreateScope().ServiceProvider.GetRequiredService<GamesData>();
+
         }
 
         public string[] GetAllFolders()
@@ -17,34 +21,35 @@ namespace ArcadeLauncher.Services
             string[] foldersFound = Directory.GetDirectories(folderPath);
             return foldersFound;
         }
-        public Game[] GetAllManifests()
+        public GameInfo[] GetAllManifests()
         {
-            var folders = GetAllFolders();
-            List<Game> manifests = new List<Game>();
+            List<GameInfo> infos = new List<GameInfo>();
 
-            for (int i = 0; i < folders.Length; i++)
+            foreach (var game in gamesData.GameInfo)
             {
-                string manifestpath = Path.Combine(folders[i], "Manifest.json");
-                if (File.Exists(manifestpath))
-                {
-                    Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(manifestpath));
-                    game.CompleteFolder = folders[i];
-                    manifests.Add(game);
-                }
+                string manifestpath = Path.Combine(game.GamePath, "Manifest.json");
+
+                if (!File.Exists(manifestpath))
+                    continue;
+
+                game.Manifest = JsonConvert.DeserializeObject<GameManifest>(File.ReadAllText(manifestpath));
+
+                infos.Add(game);
             }
-            return manifests.ToArray();
+
+            return infos.ToArray();
         }
 
-        public void OpenExe(Game executable)
+        public void OpenExe(GameInfo gameFolder)
         {
-            Process[] processList = Process.GetProcessesByName(executable.NameExe);
+            Process[] processList = Process.GetProcessesByName(gameFolder.Manifest.NameExe);
             if (processList.Length == 0)
-                Process.Start(Path.Combine(executable.CompleteFolder, executable.NameExe + ".exe"));
+                Process.Start(Path.Combine(gameFolder.GamePath, gameFolder.Manifest.NameExe + ".exe"));
         }
 
-        public string ShowImage(Game gameFolder)
+        public string ShowImage(GameInfo gameFolder)
         {
-            byte[] imageArray = System.IO.File.ReadAllBytes(Path.Combine(gameFolder.CompleteFolder, "icon.png"));
+            byte[] imageArray = System.IO.File.ReadAllBytes(Path.Combine(gameFolder.GamePath, "icon.png"));
             string base64Image = Convert.ToBase64String(imageArray);
             return base64Image;
         }

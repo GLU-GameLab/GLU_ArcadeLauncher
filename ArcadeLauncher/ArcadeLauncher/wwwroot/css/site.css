@@ -14,6 +14,16 @@ html {
 .big-text{
     font-size: 35px;
 }
+.mid-text{
+    font-size: 20px;
+}
+
+#playericons{
+   position:absolute;
+   bottom: 0;
+   left: 1;
+
+}
 
 @media (min-width: 768px) {
   html {
@@ -24,6 +34,12 @@ html {
 html {
   position: relative;
   min-height: 100%;
+}
+
+.cat-text{
+    text-align: left !important;
+    padding-left: 20px;
+    padding-top: 10px
 }
 
 #backgroundimage {

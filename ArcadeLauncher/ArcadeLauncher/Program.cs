@@ -6,8 +6,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<GameService>();
+builder.Services.AddDbContext<GamesData>();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbservice = scope.ServiceProvider.GetService<GamesData>();
+    //dbservice?.Database.EnsureDeleted();
+    //var result = dbservice?.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
