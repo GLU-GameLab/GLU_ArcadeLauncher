@@ -5,8 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<GameService>();
 builder.Services.AddDbContext<GamesData>();
+builder.Services.AddHostedService<GameDownloadService>();
 
 var app = builder.Build();
 
