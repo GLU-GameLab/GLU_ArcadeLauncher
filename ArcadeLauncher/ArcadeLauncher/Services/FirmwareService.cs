@@ -27,6 +27,7 @@ namespace ArcadeLauncher.Services
 
         private void ExecuteLoop(CancellationToken token)
         {
+            return;
             SerialPort port = new SerialPort("COM3", 115200);
             port.Open();
             port.ReadTimeout = 500;

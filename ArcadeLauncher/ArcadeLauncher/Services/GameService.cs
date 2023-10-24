@@ -8,6 +8,8 @@ namespace ArcadeLauncher.Services
     {
         public IWebHostEnvironment env;
         public GamesData gamesData;
+        private Process currentProcess;
+
         public GameService(IWebHostEnvironment environment, IServiceProvider provider)
         {
             env = environment;
@@ -44,7 +46,7 @@ namespace ArcadeLauncher.Services
         {
             Process[] processList = Process.GetProcessesByName(gameFolder.Manifest.NameExe);
             if (processList.Length == 0)
-                currentProcess = Process.Start(Path.Combine(executable.CompleteFolder, executable.NameExe + ".exe"));
+                currentProcess = Process.Start(Path.Combine(gameFolder.GamePath, gameFolder.Manifest.NameExe + ".exe"));
         }
 
         public string ShowImage(GameInfo gameFolder)

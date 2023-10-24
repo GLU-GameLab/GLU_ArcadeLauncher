@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContext<GamesData>();
+builder.Services.AddSingleton<GameService>();
 builder.Services.AddHostedService<GameDownloadService>();
 builder.Services.AddHostedService<FirmwareService>();
 
