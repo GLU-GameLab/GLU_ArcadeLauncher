@@ -6,6 +6,7 @@ namespace ArcadeLauncher.Services
     public class GameService
     {
         public IWebHostEnvironment env;
+        private Process currentProcess;
         public GameService(IWebHostEnvironment environment)
         {
             env = environment;
@@ -52,7 +53,7 @@ namespace ArcadeLauncher.Services
         {
             Process[] processList = Process.GetProcessesByName(executable.NameExe);
             if (processList.Length == 0)
-                Process.Start(Path.Combine(executable.CompleteFolder, executable.NameExe + ".exe"));
+                currentProcess = Process.Start(Path.Combine(executable.CompleteFolder, executable.NameExe + ".exe"));
         }
 
         public string ShowImage(Game gameFolder)
@@ -63,6 +64,11 @@ namespace ArcadeLauncher.Services
             byte[] imageArray = System.IO.File.ReadAllBytes(filepath);
             string base64Image = Convert.ToBase64String(imageArray);
             return base64Image;
+        }
+
+        internal void CloseGame()
+        {
+            currentProcess?.Close();
         }
     }
 }

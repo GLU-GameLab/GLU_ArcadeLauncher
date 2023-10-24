@@ -7,6 +7,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<GameService>();
 builder.Services.AddHostedService<GameDownloadService>();
+builder.Services.AddHostedService<FirmwareService>();
 
 var app = builder.Build();
 
