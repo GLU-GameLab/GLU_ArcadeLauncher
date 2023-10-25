@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System.IO;
+﻿using ArcadeLauncher.Models;
 
 namespace ArcadeLauncher.Services
 {
@@ -8,11 +7,13 @@ namespace ArcadeLauncher.Services
 
         private PeriodicTimer timer = new PeriodicTimer(TimeSpan.FromSeconds(3));
         private ILogger<GameDownloadService> Log;
+        private GamesData gamesData;
         private List<string> SearchedDrives;
         private string folderPath;
-        public GameDownloadService(ILogger<GameDownloadService> logger)
+        public GameDownloadService(ILogger<GameDownloadService> logger, IServiceProvider provider)
         {
             Log = logger;
+            gamesData = provider.CreateScope().ServiceProvider.GetRequiredService<GamesData>();
             SearchedDrives = new();
             folderPath = Path.Combine(Environment.GetFolderPath(
   Environment.SpecialFolder.ApplicationData), "GluArcadeLauncher");
@@ -30,7 +31,6 @@ namespace ArcadeLauncher.Services
         {
             foreach (var drive in DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.Removable && d.IsReady && !SearchedDrives.Contains(d.VolumeLabel)))
             {
-
                 ScanDrive(drive, stoppingToken);
             }
 
@@ -50,19 +50,29 @@ namespace ArcadeLauncher.Services
             {
                 var possibleExistingManifest = Path.Combine(folderPath, directory.Name, "Manifest.json");
                 var possibleNewManifest = Path.Combine(directory.ToString(), "Manifest.json");
-                if (!File.Exists(possibleNewManifest))
-                    return;
-                
-                Log.LogDebug($"manifest found at {possibleNewManifest}");
-                if (!File.Exists(possibleExistingManifest))
-                {
-                    Log.LogDebug($"manifest  already copied at {possibleExistingManifest}");
+                var TargetCopyPath = Path.Combine(folderPath, directory.Name);
 
+                if (!File.Exists(possibleNewManifest))
+                    continue;
+
+                Log.LogDebug($"manifest found at {possibleNewManifest}");
+                if (File.Exists(possibleExistingManifest))
+                {
+                    Log.LogInformation($"manifest  already copied at {possibleExistingManifest} deleting old directory");
+                    Directory.Delete(TargetCopyPath, true);
                 }
 
+                if (gamesData.GameInfo.Find(directory.Name) == null)
+                    gamesData.Add(new GameInfo
+                    {
+                        GamePath = TargetCopyPath,
+                        GameName = directory.Name,
+                    });
+
                 Log.LogInformation($"directory {directory.FullName} found with a manifest, starting to copy to local folder");
-                CopyDirectory(directory, folderPath);
+                CopyDirectory(directory, TargetCopyPath);
             }
+            gamesData.SaveChanges();
             Log.LogInformation($"scan complete {drive.VolumeLabel} at {drive.Name}");
 
         }

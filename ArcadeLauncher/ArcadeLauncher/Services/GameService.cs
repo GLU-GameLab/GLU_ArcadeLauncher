@@ -1,5 +1,4 @@
 ﻿using ArcadeLauncher.Models;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Diagnostics;
 namespace ArcadeLauncher.Services
@@ -51,7 +50,12 @@ namespace ArcadeLauncher.Services
 
         public string ShowImage(GameInfo gameFolder)
         {
-            byte[] imageArray = System.IO.File.ReadAllBytes(Path.Combine(gameFolder.GamePath, "icon.png"));
+            var iconpath = Path.Combine(gameFolder.GamePath, "icon.png");
+            if (!File.Exists(iconpath))
+            {
+                return string.Empty;
+            }
+                byte[] imageArray = System.IO.File.ReadAllBytes(iconpath);
             string base64Image = Convert.ToBase64String(imageArray);
             return base64Image;
         }
