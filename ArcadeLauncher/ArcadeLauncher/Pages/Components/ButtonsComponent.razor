@@ -9,30 +9,30 @@
 
 <div class="">
     <h2 class="font-text big-text cat-text">NEW</h2>
-    <div style="width:69%; height:2px; background-color:white !important;"></div>
-    <div class="top-padding slick-track game-track">
+    <div class="img-section"></div>
+    @* <div class="top-padding slick-track game-track">
         @for (int i = 0; i < games.Length; i++)
         {
             GameInfo game = games[i];
             ObtainImage(game);
             <button style="background-image: url(@imgSrc); --mainColor: @game.Manifest.BackgroundColor; " class="play-btn" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)"></button>
         }
-    </div>
+    </div> *@
 
-    <h2 class="font-text big-text cat-text">STAFF PICK</h2>
-    <div style="width:69%; height:2px; background-color:white !important;"></div>
+@*     <h2 class="font-text big-text cat-text">STAFF PICK</h2>
+    <div class="img-section"></div> *@
 
-    <h2 class="font-text big-text cat-text">A-Z</h2>
-    <div style="width:69%; height:2px; background-color:white !important;"></div>
+@*     <h2 class="font-text big-text cat-text">A-Z</h2>
+    <div style="width:69%; height:2px; background-color:white !important;"></div> *@
 
 </div>
 
 
-<div class="info-board info-padding">
+<div class="img-info-board info-padding">
     <div class="font-text">
         <div class="big-text">@gameName</div>
 
-        <div style="width:100%; height:2px; background-color:white !important;" class="hline"></div>
+        @* <div style="width:100%; height:2px; background-color:white !important;" class="hline"></div> *@
         <div class="font-text mid-text">
             @gameDesc
         </div>
