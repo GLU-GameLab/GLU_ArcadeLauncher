@@ -8,16 +8,29 @@
 }
 
 <div class="">
-    <h2 class="font-text big-text cat-text">NEW</h2>
-    <div class="img-section"></div>
-    @* <div class="top-padding slick-track game-track">
-        @for (int i = 0; i < games.Length; i++)
-        {
-            GameInfo game = games[i];
-            ObtainImage(game);
-            <button style="background-image: url(@imgSrc); --mainColor: @game.Manifest.BackgroundColor; " class="play-btn" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)"></button>
-        }
-    </div> *@
+    <div class="">
+        <h2 id="cat-new-text" class="font-text big-text cat-text">NEW</h2>
+        <div class="img-section menu-color"></div>
+        <div class="games-new">
+            @for (int i = 0; i < games.Length; i++)
+            {
+                GameInfo game = games[i];
+                ObtainImage(game);
+                <button style="" class="play-btn menu-color" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)">
+                    <div style="background-image: url(@imgSrc); --mainColor: @game.Manifest.BackgroundColor;">
+
+                    </div>
+                </button>
+                
+            }
+        </div>
+    </div>
+    <div>
+        <h2 id="cat-pop-text" class="font-text big-text cat-text">POPULAIR</h2>
+        <div class="img-section-2 menu-color"></div>
+    </div>
+    
+
 
 @*     <h2 class="font-text big-text cat-text">STAFF PICK</h2>
     <div class="img-section"></div> *@
@@ -28,7 +41,7 @@
 </div>
 
 
-<div class="img-info-board info-padding">
+<div class="img-info-board info-padding menu-color">
     <div class="font-text">
         <div class="big-text">@gameName</div>
 

@@ -36,10 +36,19 @@ html {
   min-height: 100%;
 }
 
-.cat-text{
+.cat-text {
+    color: white !important;
     text-align: left !important;
-    padding-left: 20px;
-    padding-top: 10px
+    font-size: 80px;
+}
+
+#cat-new-text {
+    padding-left: 160px;
+    padding-top: 55px
+}
+#cat-pop-text {
+    padding-left: 160px;
+    padding-top: 295px
 }
 
 #backgroundimage {
@@ -60,24 +69,35 @@ html {
 }
 
 .play-btn {
-    all:unset;
+    all: unset;
     margin: 10px;
-    background-size: cover;
-    height: 20vh;
-    width: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 22vh;
+    width: 16vh;
     display: inline-block;
     opacity: 1;
-    border: none;
-    border-radius: 15px;
+/*    box-shadow: 0 0 10px 5px #8E8E8E;*/
+    background-image: url(/css/images/game_display_1.png);
+}
+    .play-btn > div {
+        height: 188px;
+        width: 134px;
+        background-size: cover;
+        margin-left: 20px;
+        margin-bottom: 12px;
+    }
+    .play-btn:focus {
+        background-image: url(/css/images/game_display_1_select.png);
+    }
+
+.games-new{
+    position: absolute;
+    left:1em;
+    padding-top: 16px;
 }
 
-.top-padding{
-    padding-top: 40px;
-}
 
-.play-btn:focus {
-    box-shadow: 0 0 30px 15px var(--mainColor);
-}
 
 .button-center {
     position: relative;
@@ -124,9 +144,24 @@ html {
     background-image: url(/css/images/scroll_menu_2.png);
     background-size: 100%;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 40vh;
     width: 111vh;
     position: absolute;
     left: 0;
     top: 1em;
+}
+
+.img-section-2 {
+    background-image: url(/css/images/scroll_menu_2.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 40vh;
+    width: 111vh;
+    position: absolute;
+    left: 0;
+    top: 26em;
+}
+
+.menu-color {
+    filter: brightness(0) saturate(100%) invert(83%) sepia(23%) saturate(777%) hue-rotate(39deg) brightness(105%) contrast(111%);
 }
