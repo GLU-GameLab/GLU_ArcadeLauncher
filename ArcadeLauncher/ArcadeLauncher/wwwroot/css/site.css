@@ -18,11 +18,28 @@ html {
     font-size: 20px;
 }
 
-#playericons{
-   position:absolute;
-   bottom: 0;
-   left: 1;
+#playericons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 180px;
+    padding-bottom: 180px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
 
+    #playericons > img {
+        background-image: url(/css/images/player_png.png);
+    }
+
+.inner{
+    position:relative;
+}
+.outer{
+    position: absolute;
 }
 
 @media (min-width: 768px) {
@@ -60,12 +77,31 @@ html {
 
 .info-padding{
     padding: 2em;
+    padding-top: 10em;
     text-align: center;
     letter-spacing: 3px;
 }
 
+.smaller-text-space{
+    width: 45vh;
+    position: absolute;
+    right: 150px;
+}
+
 .hidden{
     display: none !important;
+}
+
+.play-border {
+    all: unset;
+    margin: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 22vh;
+    width: 16vh;
+    display: inline-block;
+    opacity: 1;
+    background-image: url(/css/images/game_display_1.png);
 }
 
 .play-btn {
@@ -78,16 +114,23 @@ html {
     display: inline-block;
     opacity: 1;
 /*    box-shadow: 0 0 10px 5px #8E8E8E;*/
-    background-image: url(/css/images/game_display_1.png);
+
 }
-    .play-btn > div {
+    .play-btn > div > div{
         height: 188px;
         width: 134px;
         background-size: cover;
-        margin-left: 20px;
-        margin-bottom: 12px;
+        margin-left: 29px;
+        margin-top: 28px;
     }
-    .play-btn:focus {
+    .play-btn:focus .play-border {
+        margin: 10px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 22vh;
+        width: 16vh;
+        display: inline-block;
+        opacity: 1;
         background-image: url(/css/images/game_display_1_select.png);
     }
 

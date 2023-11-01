@@ -16,15 +16,20 @@
             {
                 GameInfo game = games[i];
                 ObtainImage(game);
-                <button style="" class="play-btn menu-color" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)">
-                    <div style="background-image: url(@imgSrc); --mainColor: @game.Manifest.BackgroundColor;">
-
+                <button style="" class="play-btn inner" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)">
+                    <div class="outer">
+                        <div style="background-image: url(@imgSrc); --mainColor: @game.Manifest.BackgroundColor;">
+                        </div>
                     </div>
+                    
+                    <div class="play-border menu-color"></div>
+
                 </button>
                 
             }
         </div>
     </div>
+
     <div>
         <h2 id="cat-pop-text" class="font-text big-text cat-text">POPULAIR</h2>
         <div class="img-section-2 menu-color"></div>
@@ -42,20 +47,22 @@
 
 
 <div class="img-info-board info-padding menu-color">
-    <div class="font-text">
-        <div class="big-text">@gameName</div>
+    <div class="smaller-text-space">
+        <div class="font-text">
+            <div class="big-text">@gameName</div>
 
-        @* <div style="width:100%; height:2px; background-color:white !important;" class="hline"></div> *@
-        <div class="font-text mid-text">
-            @gameDesc
-        </div>
-        <div id="playericons">
-            @for (int i = 0; i < playersNeeded; i++)
-            {
-                <img style="padding-right: 5px;" src="/css/images/PlayerIcon.png" alt="i" />
-            }
+            <div class="font-text mid-text">
+                @gameDesc
+            </div>
         </div>
 
+    </div>
+
+    <div id="playericons">
+        @for (int i = 0; i < playersNeeded; i++)
+        {
+            <img style="padding-right: 5px;" url="" alt="i" />
+        }
     </div>
 </div>
 @code {
