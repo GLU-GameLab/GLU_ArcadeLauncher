@@ -1,13 +1,21 @@
 ﻿using ArcadeLauncher.Models;
+using Microsoft.AspNetCore.StaticFiles;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+
 namespace ArcadeLauncher.Services
 {
     public class GameService
     {
+        [DllImport("User32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+        private IntPtr handle;
         public IWebHostEnvironment env;
         public GamesData gamesData;
         private Process currentProcess;
+
+
 
         public GameService(IWebHostEnvironment environment, IServiceProvider provider)
         {
@@ -43,9 +51,17 @@ namespace ArcadeLauncher.Services
 
         public void OpenExe(GameInfo gameFolder)
         {
+
             Process[] processList = Process.GetProcessesByName(gameFolder.Manifest.NameExe);
             if (processList.Length == 0)
+            {
                 currentProcess = Process.Start(Path.Combine(gameFolder.GamePath, gameFolder.Manifest.NameExe + ".exe"));
+
+                handle = currentProcess.MainWindowHandle;
+                SetForegroundWindow(handle);
+            }
+                
+            
         }
 
         public string ShowImage(GameInfo gameFolder)
