@@ -3,29 +3,14 @@
 
 // Write your JavaScript code.
 
-function reveal() {
-    var reveals = document.querySelectorAll(".reveal");
-
-    for (var i = 0; i < reveals.length; i++) {
-        var windowHeight = window.innerHeight;
-        var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 1600;
-
-        if (elementTop < windowHeight - elementVisible) {
-            reveals[i].classList.add("active");
-        }
-        else {
-            reveals[i].classList.remove("active");
-        }
-    }
-}
-
-
 
 function scroller() {
     window.scroll({top: 1130, behavior: "smooth",})
 }
 
-window.addEventListener("scroll", reveal);
-window.addEventListener("load", (event) => { window.scroll({ top: 0, behavior: "instant" }); document.querySelectorAll(".reveal").classList.remove("active"); })
+function scrollBack() {
+    window.scroll({ top: 0, behavior: "instant", })
+}
+
+window.addEventListener("load", scrollBack)
 

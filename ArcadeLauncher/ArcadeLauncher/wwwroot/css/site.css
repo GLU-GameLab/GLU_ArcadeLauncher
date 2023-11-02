@@ -97,7 +97,7 @@ html {
     background: url("images/main_menu_bg.png");
     background-size: cover;
     background-repeat:no-repeat;
-    height: 2000px;
+    height: 2200px;
     width: 100vw;
 }
 
@@ -121,10 +121,6 @@ html {
 .reveal{
     position: relative;
     transform: translateY(1100px);
-    opacity: 1;
-}
-.reveal.active{
-    transform: translateY(1000px);
     opacity: 1;
 }
 
