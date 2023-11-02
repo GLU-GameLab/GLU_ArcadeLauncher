@@ -31,12 +31,18 @@
 
     window.addEventListener('gamepadconnected', function (event) {
         console.log(event);
+        removeActive();
         updateLoop();
-        document.querySelector("#StartText").classList.add("hidden");
-        document.querySelector("#MenuText").classList.remove("hidden");
-        scroller();
-
     });
+
+    function removeActive(){
+        console.log("check");
+        console.log(document.querySelectorAll(".active"));
+        if (document.querySelectorAll(".active") > 0) {
+            document.querySelectorAll(".reveal").classList.remove("active");
+        }
+        
+    }
 
     function updateLoop() {
         const gamepad = navigator.getGamepads()[0];
@@ -88,7 +94,12 @@
             '.play-btn'
         );
 
-
+        if (xBoxButton1.pressed) {
+            document.querySelector("#StartText").classList.add("hidden");
+            document.querySelector("#MenuText").classList.remove("hidden");
+            scroller();
+            console.log("test");
+        }
 
     }
 

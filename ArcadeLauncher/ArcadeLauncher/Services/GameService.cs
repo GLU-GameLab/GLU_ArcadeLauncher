@@ -36,7 +36,7 @@ namespace ArcadeLauncher.Services
 
             foreach (var game in gamesData.GameInfo)
             {
-                string manifestpath = Path.Combine(game.GamePath, "Manifest.json");
+                string manifestpath = Path.Combine(game.GamePath, "manifest.json");
 
                 if (!File.Exists(manifestpath))
                     continue;

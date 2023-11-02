@@ -9,7 +9,7 @@ function reveal() {
     for (var i = 0; i < reveals.length; i++) {
         var windowHeight = window.innerHeight;
         var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 900;
+        var elementVisible = 1600;
 
         if (elementTop < windowHeight - elementVisible) {
             reveals[i].classList.add("active");
@@ -27,3 +27,5 @@ function scroller() {
 }
 
 window.addEventListener("scroll", reveal);
+window.addEventListener("load", (event) => { window.scroll({ top: 0, behavior: "instant" }); document.querySelectorAll(".reveal").classList.remove("active"); })
+
