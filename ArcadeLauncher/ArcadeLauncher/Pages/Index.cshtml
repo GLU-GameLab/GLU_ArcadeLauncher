@@ -32,18 +32,41 @@
         updateLoop();
         document.querySelector("#StartText").classList.add("hidden");
         document.querySelector("#MenuText").classList.remove("hidden");
-        focusableElements = document.querySelectorAll(
-            '.play-btn'
-        );
     });
 
     function updateLoop() {
 
         const gamepad = navigator.getGamepads()[0];
         const xBoxButtonB = gamepad.buttons[1];
+        const xBoxButton1 = gamepad.buttons[2];
+        const xBoxButton2 = gamepad.buttons[3];
+        const xBoxButton3 = gamepad.buttons[4];
+        const xBoxButton4 = gamepad.buttons[5];
+        const xBoxButton5 = gamepad.buttons[6];
+        const xBoxButton6 = gamepad.buttons[7];
+        const xBoxButton7 = gamepad.buttons[8];
+        const xBoxButton8 = gamepad.buttons[9];
+        const xBoxButton9 = gamepad.buttons[10];
+        // const xBoxButton10 = gamepad.buttons[11];
+        // const xBoxButton11 = gamepad.buttons[12];
+        // const xBoxButton12 = gamepad.buttons[13];
+        // const xBoxButton13 = gamepad.buttons[14];
         const xBoxStickLeft = gamepad.axes[0];
 
         if (xBoxButtonB.pressed) { testConsole() }
+        if (xBoxButton1.pressed) { testLog(1) }
+        if (xBoxButton2.pressed) { testLog(2) }
+        if (xBoxButton3.pressed) { testLog(3) }
+        if (xBoxButton4.pressed) { testLog(4) }
+        if (xBoxButton5.pressed) { testLog(5) }
+        if (xBoxButton6.pressed) { testLog(6) }
+        if (xBoxButton7.pressed) { testLog(7) }
+        if (xBoxButton8.pressed) { testLog(8) }
+        if (xBoxButton9.pressed) { testLog(9) }
+        // if (xBoxButton10.pressed) { testLog(10) }
+        // if (xBoxButton11.pressed) { testLog(11) }
+        // if (xBoxButton12.pressed) { testLog(12) }
+        // if (xBoxButton13.pressed) { testLog(13) }
 
         var timeout = 0;
         if (xBoxStickLeft < -0.1)
@@ -57,10 +80,20 @@
             nextItem(current) 
         }
         setTimeout(() => rAF(updateLoop), timeout);
+
+        focusableElements = document.querySelectorAll(
+            '.play-btn'
+        );
     }
 
     function testConsole() {
         focusableElements[current].click();
+        
+    }
+
+    function testLog(number) {
+        console.log("Hallo" + number);
+        console.log(focusableElements);
     }
 
     function nextItem(index) {
