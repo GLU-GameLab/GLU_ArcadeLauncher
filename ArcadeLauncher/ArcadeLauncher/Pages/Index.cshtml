@@ -6,11 +6,13 @@
 
 }
 
-<div id="StartText" class="text-center ">
-    <h2 style="font-size: 300%;">Press the start button to play!</h2>
+<div id="StartText" class="text-center font-text ">
+    <div id="start-button" class="menu-color"> </div>
+    <h2 style="font-size: 300%; position:absolute; transform: translateY(8px)">START</h2>
+
 </div>
 
-<div id="MenuText" class="text-center hidden">
+<div id="MenuText" class="text-center reveal">
     @(await Html.RenderComponentAsync<ButtonsComponent>(RenderMode.Server))
     </div>
 
@@ -32,6 +34,7 @@
         updateLoop();
         document.querySelector("#StartText").classList.add("hidden");
         document.querySelector("#MenuText").classList.remove("hidden");
+        scroller();
     });
 
     function updateLoop() {

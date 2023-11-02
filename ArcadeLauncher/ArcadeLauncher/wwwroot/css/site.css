@@ -90,9 +90,9 @@ html {
 }
 
 #backgroundimage {
-    background: url("images/background.jpg");
+    background: url("images/main_menu_bg.png");
     background-size: cover;
-    height: 100vh;
+    height: 2000px;
     width: 100vw;
 }
 
@@ -111,6 +111,16 @@ html {
 
 .hidden{
     display: none !important;
+}
+
+.reveal{
+    position: relative;
+    transform: translateY(1130px);
+    opacity: 1;
+}
+.reveal.active{
+    transform: translateY(1130px);
+    opacity: 1;
 }
 
 .play-border {
@@ -191,6 +201,17 @@ html {
     align-items: center;
 }
 
+#start-button
+{
+    position: absolute;
+    background-image: url(/css/images/start_button.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 600px;
+    width: 600px;
+    transform: translateY(200px);
+
+}
 
 
 .img-info-board {
