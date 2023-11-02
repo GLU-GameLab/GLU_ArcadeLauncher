@@ -3,19 +3,19 @@ html {
 }
 
 @font-face {
-    font-family: boldlineRegular;
-    src: url(/Fonts/Boldine.ttf);
+    font-family: asusROG;
+    src: url(/Fonts/7032-fontps.ttf);
 }
 
 .font-text{
-    font-family: boldlineRegular;
+    font-family: asusROG;
 }
 
 .big-text{
-    font-size: 35px;
+    font-size: 30px;
 }
 .mid-text{
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #playericons {
@@ -24,15 +24,36 @@ html {
     left: 0;
     padding-left: 180px;
     padding-bottom: 180px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 50px;
-    height: 50px;
+    width: 300px !important;
+    height: 100px !important;
     display: inline-block;
 }
 
-    #playericons > img {
+    #playericons > div {
         background-image: url(/css/images/player_png.png);
+        height: 40px;
+        width: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        float: left;
+    }
+
+#author-names {
+    position: absolute;
+    bottom: 0;
+    right: 1;
+    padding-right: 10px;
+    padding-bottom: 250px;
+    width: 350px !important;
+    height: 300px !important;
+    display: inline-block;
+}
+
+    #author-names > div {
+        height: 40px;
+        width: 120px;
+        padding-bottom: 90px;
+        float: left;
     }
 
 .inner{
