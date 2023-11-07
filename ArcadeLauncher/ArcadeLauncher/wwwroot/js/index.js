@@ -135,7 +135,7 @@ function nextItem() {
     focusableElements = document.querySelectorAll(
         '.play-btn'
     );
-    current = (current + 1 * invert) % focusableElements.length;
+    OffsetCurrent(1);
     focusableElements[current].focus();
 }
 
@@ -144,9 +144,13 @@ function prevItem() {
         '.play-btn'
     );
 
-    current = (current - 1 * invert) % focusableElements.length;
+    OffsetCurrent(-1);
+    focusableElements[current].focus();
+}
+
+function OffsetCurrent(amount) {
+    current = (current - amount * invert) % focusableElements.length;
     if (current < 0) {
         current = focusableElements.length - 1;
     }
-    focusableElements[current].focus();
 }
