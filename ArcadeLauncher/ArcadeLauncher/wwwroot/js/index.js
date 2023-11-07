@@ -7,11 +7,15 @@ var focusableElements = document.querySelectorAll(
 var current = 0;
 var invert = 1;
 var savedTimeout = 500;
+var isplaying = false;
 
 window.addEventListener('gamepadconnected', function (event) {
     console.log(event);
     removeActive();
-    updateLoop();
+    if (!isplaying) {
+        isplaying = true;
+        updateLoop();
+    }
     if (navigator.getGamepads()[0].id.startsWith("Xinmotek")) {
         invert = -1;
     }
@@ -99,10 +103,6 @@ function updateLoop() {
         savedTimeout = 500;
     }
     setTimeout(() => rAF(updateLoop), timeout);
-
-    focusableElements = document.querySelectorAll(
-        '.play-btn'
-    );
 
     if (xBoxButton1.pressed) {
         document.querySelector("#StartText").classList.add("hidden");
