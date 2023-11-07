@@ -6,6 +6,7 @@ var focusableElements = document.querySelectorAll(
 
 var current = 0;
 var invert = 1;
+var savedTimeout = 500;
 
 window.addEventListener('gamepadconnected', function (event) {
     console.log(event);
@@ -86,12 +87,16 @@ function updateLoop() {
 
     var timeout = 0;
     if (xBoxStickLeft < -0.1) {
-        timeout = 50;
-        prevItem(current)
+        timeout = savedTimeout;
+        LowerTimeout();
+        prevItem();
     }
-    if (xBoxStickLeft > 0.1) {
-        timeout = 50;
-        nextItem(current)
+    else if (xBoxStickLeft > 0.1) {
+        timeout = savedTimeout;
+        LowerTimeout();
+        nextItem();
+    } else {
+        savedTimeout = 500;
     }
     setTimeout(() => rAF(updateLoop), timeout);
 
@@ -108,6 +113,14 @@ function updateLoop() {
 
 }
 
+function LowerTimeout() {
+    savedTimeout -= 50;
+    if (savedTimeout < 50) {
+        savedTimeout = 50;
+    }
+}
+
+
 function testConsole() {
     focusableElements[current].click();
 
@@ -118,13 +131,20 @@ function testLog(number) {
     console.log(focusableElements);
 }
 
-function nextItem(index) {
-    current = (index + 1 * invert) % focusableElements.length;
+function nextItem() {
+    focusableElements = document.querySelectorAll(
+        '.play-btn'
+    );
+    current = (current + 1 * invert) % focusableElements.length;
     focusableElements[current].focus();
 }
 
-function prevItem(index) {
-    current = (index - 1 * invert) % focusableElements.length;
+function prevItem() {
+    focusableElements = document.querySelectorAll(
+        '.play-btn'
+    );
+
+    current = (current - 1 * invert) % focusableElements.length;
     if (current < 0) {
         current = focusableElements.length - 1;
     }
