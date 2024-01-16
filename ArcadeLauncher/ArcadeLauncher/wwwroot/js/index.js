@@ -38,11 +38,6 @@ function updateLoop() {
     const xBoxButton2 = gamepad.buttons[3];
     const xBoxButton3 = gamepad.buttons[4];
     const xBoxButton4 = gamepad.buttons[5];
-    const xBoxButton5 = gamepad.buttons[6];
-    const xBoxButton6 = gamepad.buttons[7];
-    const xBoxButton7 = gamepad.buttons[8];
-    const xBoxButton8 = gamepad.buttons[9];
-    const xBoxButton9 = gamepad.buttons[10];
     const xBoxStickLeft = gamepad.axes[0];
 
     if (navigator.getGamepads().length > 1) {
@@ -54,11 +49,6 @@ function updateLoop() {
         const xBoxButton2_1 = gamepad1.buttons[3];
         const xBoxButton3_1 = gamepad1.buttons[4];
         const xBoxButton4_1 = gamepad1.buttons[5];
-        const xBoxButton5_1 = gamepad1.buttons[6];
-        const xBoxButton6_1 = gamepad1.buttons[7];
-        const xBoxButton7_1 = gamepad1.buttons[8];
-        const xBoxButton8_1 = gamepad1.buttons[9];
-        const xBoxButton9_1 = gamepad1.buttons[10];
         const xBoxStickLeft_1 = gamepad1.axes[0];
 
         if (xBoxButtonA_1.pressed) { testLog(11) }
@@ -67,11 +57,6 @@ function updateLoop() {
         if (xBoxButton2_1.pressed) { testLog(14) }
         if (xBoxButton3_1.pressed) { testLog(15) }
         if (xBoxButton4_1.pressed) { testLog(16) }
-        if (xBoxButton5_1.pressed) { testLog(17) }
-        if (xBoxButton6_1.pressed) { testLog(18) }
-        if (xBoxButton7_1.pressed) { testLog(19) }
-        if (xBoxButton8_1.pressed) { testLog(20) }
-        if (xBoxButton9_1.pressed) { testLog(21) }
     }
 
     if (xBoxButtonB.pressed) { testConsole() }
@@ -81,11 +66,6 @@ function updateLoop() {
     if (xBoxButton2.pressed) { testLog(3) }
     if (xBoxButton3.pressed) { testLog(4) }
     if (xBoxButton4.pressed) { testLog(5) }
-    if (xBoxButton5.pressed) { testLog(6) }
-    if (xBoxButton6.pressed) { testLog(7) }
-    if (xBoxButton7.pressed) { testLog(8) }
-    if (xBoxButton8.pressed) { testLog(9) }
-    if (xBoxButton9.pressed) { testLog(10) }
 
 
 
