@@ -73,12 +73,12 @@ function updateLoop() {
     if (xBoxStickLeft < -0.1) {
         timeout = savedTimeout;
         LowerTimeout();
-        prevItem();
+        nextItem();
     }
     else if (xBoxStickLeft > 0.1) {
         timeout = savedTimeout;
         LowerTimeout();
-        nextItem();
+        prevItem();
     } else {
         savedTimeout = 500;
     }

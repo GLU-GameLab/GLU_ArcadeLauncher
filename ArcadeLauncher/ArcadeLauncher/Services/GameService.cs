@@ -13,7 +13,7 @@ namespace ArcadeLauncher.Services
         private IntPtr handle;
         public IWebHostEnvironment env;
         public GamesData gamesData;
-        private Process currentProcess;
+        private Process? currentProcess;
 
 
 
@@ -51,6 +51,8 @@ namespace ArcadeLauncher.Services
 
         public void OpenExe(GameInfo gameFolder)
         {
+            if (currentProcess is not null)
+                return;
 
             Process[] processList = Process.GetProcessesByName(gameFolder.Manifest.NameExe);
             if (processList.Length == 0)
@@ -58,7 +60,7 @@ namespace ArcadeLauncher.Services
                 currentProcess = Process.Start(Path.Combine(gameFolder.GamePath, gameFolder.Manifest.NameExe + ".exe"));
 
                 handle = currentProcess.MainWindowHandle;
-                SetForegroundWindow(handle);
+                //SetForegroundWindow(handle);
             }
                 
             
@@ -78,7 +80,9 @@ namespace ArcadeLauncher.Services
 
         internal void CloseGame()
         {
-            currentProcess?.Close();
+
+            currentProcess?.Kill();
+            currentProcess = null;
         }
     }
 }

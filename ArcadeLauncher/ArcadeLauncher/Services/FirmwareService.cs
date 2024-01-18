@@ -14,7 +14,7 @@ namespace ArcadeLauncher.Services
 
             ReadCommands = new Dictionary<string, Action<string>>()
             {
-                {"close-game", CloseGame }
+                {"CLG", CloseGame }
             };
         }
 
@@ -27,7 +27,7 @@ namespace ArcadeLauncher.Services
 
         private void ExecuteLoop(CancellationToken token)
         {
-            return;
+            //return;
             SerialPort port = new SerialPort("COM3", 115200);
             port.Open();
             port.ReadTimeout = 500;
@@ -58,6 +58,11 @@ namespace ArcadeLauncher.Services
             {
                 action(command);
             }
+            else
+            {
+                logger.LogError($"command {command} not found");
+            }
+
         }
 
         private void CloseGame(string cmd)
