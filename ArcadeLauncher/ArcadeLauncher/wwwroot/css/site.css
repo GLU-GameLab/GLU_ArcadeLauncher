@@ -1,9 +1,11 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    cursor: none;
 }
 
 body::-webkit-scrollbar {
     display: none;
+
 }
 
 @font-face {
@@ -60,7 +62,7 @@ body::-webkit-scrollbar {
     align-content: end;
 }
 
-    #author-names > div {
+    #author-names > div {  
         width: 300px;
         float: left;
     }
