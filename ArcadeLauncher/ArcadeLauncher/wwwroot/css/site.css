@@ -42,21 +42,26 @@ body::-webkit-scrollbar {
         float: left;
     }
 
+        #playericons > div:nth-child(3) {
+            margin-left: -30px;
+        }
+
 #author-names {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    right: 1;
-    padding-right: 10px;
-    padding-bottom: 250px;
+    right: 0;
+    margin-right: 60px;
+    padding-bottom: 130px;
     width: 350px !important;
-    height: 300px !important;
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-start;
+    align-content: end;
 }
 
     #author-names > div {
-        height: 40px;
-        width: 120px;
-        padding-bottom: 90px;
+        width: 300px;
         float: left;
     }
 

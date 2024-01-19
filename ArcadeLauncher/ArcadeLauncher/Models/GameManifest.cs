@@ -7,7 +7,6 @@
         public string[] Authors { get; set; }
         public string NameExe { get; set; }
         public string BackgroundColor { get; set; }
-
         public int PlayersNeeded { get; set; }
         public int ManifestVersion { get; set; } = 1;
     }

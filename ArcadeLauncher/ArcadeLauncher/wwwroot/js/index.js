@@ -102,6 +102,9 @@ function LowerTimeout() {
 
 
 function testConsole() {
+    focusableElements = document.querySelectorAll(
+        '.play-btn'
+    );
     focusableElements[current].click();
 
 }

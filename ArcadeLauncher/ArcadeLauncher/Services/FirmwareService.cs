@@ -29,7 +29,16 @@ namespace ArcadeLauncher.Services
         {
             //return;
             SerialPort port = new SerialPort("COM3", 115200);
+
+            try
+            {
+
             port.Open();
+            }
+            catch
+            {
+                return;
+            }
             port.ReadTimeout = 500;
             while (port.IsOpen && !token.IsCancellationRequested)
             {
