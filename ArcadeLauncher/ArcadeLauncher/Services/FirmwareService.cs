@@ -1,4 +1,5 @@
-﻿using System.IO.Ports;
+﻿using Microsoft.Extensions.Logging;
+using System.IO.Ports;
 
 namespace ArcadeLauncher.Services
 {
@@ -37,8 +38,12 @@ namespace ArcadeLauncher.Services
             }
             catch
             {
+                logger.LogError(" arduino not found");
+
                 return;
             }
+
+            logger.LogInformation("found the arduino and talking");
             port.ReadTimeout = 500;
             while (port.IsOpen && !token.IsCancellationRequested)
             {
@@ -63,6 +68,7 @@ namespace ArcadeLauncher.Services
 
         private void HandleCommand(string command)
         {
+            logger.LogInformation($"command {command} recieved");
             if (ReadCommands.TryGetValue(command.Split(" ")[0], out var action))
             {
                 action(command);
