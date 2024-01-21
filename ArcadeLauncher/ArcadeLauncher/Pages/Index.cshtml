@@ -6,13 +6,13 @@
 
 }
 
-<div id="StartText" class="text-center font-text ">
+<div id="StartText" class="text-center font-text menu">
     <div id="start-button" class="menu-color"> </div>
     <h2 style="font-size: 300%; position:absolute; transform: translateY(8px)">START</h2>
 
 </div>
 
-<div id="MenuText" class="text-center reveal">
+<div id="MenuText" class="reveal menu">
     @(await Html.RenderComponentAsync<ButtonsComponent>(RenderMode.Server))
     </div>
 

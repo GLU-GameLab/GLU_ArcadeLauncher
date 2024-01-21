@@ -125,12 +125,6 @@ html {
     display: none !important;
 }
 
-.reveal{
-    position: relative;
-    transform: translateY(1100px);
-    opacity: 1;
-}
-
 .play-border {
     all: unset;
     margin: 10px;
@@ -173,44 +167,68 @@ html {
         background-image: url(/css/images/game_display_1_select.png);
     }
 
-.games-new{
-    position: absolute;
-    left:1em;
-    padding-top: 16px;
+.games-row {
+    position: relative;
+    max-width: 1155px;
+    width: 100%;
+    max-height: 275px;
+    height: 275px;
 }
 
+.games-bc {
+    background: url(/css/images/scroll_menu_background.png);
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+}
+.games-container {
+    position: relative;
+    overflow: scroll;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
 
 
 .button-center {
     position: relative;
     top: 50px
-
 }
 
-.info-board {
-    background-color: #967bb67d !important;
-    box-shadow: 0 0 10px 10px #967bb67d;
-    margin: 2em;
-    background-size: cover;
-    border-radius: 40px;
-    position: absolute;
-    right:0;
-    top:0;
-    height: calc(100% - 4em);
-    width: 35em;
-}
 
-#StartText {
-    position: fixed;
+.menu {
     width: 100vw;
     height: 100vh;
+}
+#StartText {
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#start-button
-{
+#MenuText {
+    display: flex;
+}
+.games-catalouge {
+    margin-right: -90px;
+    width:1155px;
+}
+
+
+.img-info-board {
+    flex-grow: 1;
+    background-image: url(/css/images/info_display.png);
+    background-size: 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+
+#start-button {
     position: absolute;
     background-image: url(/css/images/start_button.png);
     background-size: 100%;
@@ -218,20 +236,8 @@ html {
     height: 600px;
     width: 600px;
     transform: translateY(200px);
-
 }
 
-
-.img-info-board {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-image: url(/css/images/info_display.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 73vh;
-}
 
 .img-section {
     background-image: url(/css/images/scroll_menu_2.png);
