@@ -86,6 +86,12 @@
 
 
 <div class="img-info-board info-padding menu-color">
+
+    
+    <div class="font-text" style="margin-top: -20px; opacity: @(isLaunching? 1:0)">
+            <div class="big-text" style="border-bottom: solid 7px;">Launching...</div><!--!-->
+        </div>
+
     <div class="smaller-text-space">
         <div class="font-text">
             <div class="big-text">@gameName</div>
@@ -130,10 +136,21 @@
 
     private string imageBase64;
     private string imgSrc = "";
-
+    private bool isLaunching = false;
     private void OpenExe(GameInfo game)
     {
-        gameservice.OpenExe(game);
+        isLaunching = gameservice.OpenExe(game, () =>
+        {
+            DelayedLaunchRemove();
+        });
+    }
+
+    async Task DelayedLaunchRemove()
+    {
+        await Task.Delay(100);
+        isLaunching = false;
+
+        StateHasChanged();
     }
 
     private void SetInfo(GameInfo game)

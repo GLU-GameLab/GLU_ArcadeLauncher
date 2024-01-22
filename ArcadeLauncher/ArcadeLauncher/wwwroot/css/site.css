@@ -1,6 +1,7 @@
 html {
     font-size: 14px;
     cursor: none;
+    --color-filter: brightness(0) saturate(100%) invert(83%) sepia(23%) saturate(777%) hue-rotate(39deg) brightness(105%) contrast(111%);
 }
 
 body::-webkit-scrollbar {
@@ -10,7 +11,7 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: asusROG;
-    src: url(/Fonts/7032-fontps.ttf);
+    src: url(/Fonts/Boldine.ttf);
 }
 
 .font-text{
@@ -112,16 +113,14 @@ html {
 }
 
 .info-padding{
-    padding: 2em;
-    padding-top: 10em;
+    padding: 9.5em;
     text-align: center;
     letter-spacing: 3px;
 }
 
-.smaller-text-space{
-    width: 45vh;
-    position: absolute;
-    right: 150px;
+.smaller-text-space {
+    position: relative;
+    width: 100%;
 }
 
 .hidden{
@@ -281,5 +280,5 @@ html {
 }
 
 .menu-color {
-    filter: brightness(0) saturate(100%) invert(83%) sepia(23%) saturate(777%) hue-rotate(39deg) brightness(105%) contrast(111%);
+    filter: var(--color-filter);
 }

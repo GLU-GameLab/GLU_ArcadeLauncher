@@ -163,7 +163,7 @@ function focusSelected(scroll = true) {
             left: 0,
             behavior: "smooth",
         });
-        console.log("changing focus");
+
         var focusTo = focusableElements[currentIndex];
         focusTo.focus({
             preventScroll: true
@@ -174,6 +174,11 @@ function focusSelected(scroll = true) {
             behavior: "smooth",
         });
 
+        let color = new Color(0, 255, 0);
+        let solver = new Solver(color);
+        let result = solver.solve();
+        let filterCSS = result.values;
+        console.log(filterCSS);
     }
 }
 

@@ -1,5 +1,4 @@
 ﻿using ArcadeLauncher.Models;
-using Microsoft.AspNetCore.StaticFiles;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -14,7 +13,7 @@ namespace ArcadeLauncher.Services
         public IWebHostEnvironment env;
         public GamesData gamesData;
         private Process? currentProcess;
-
+        private Action? CloseCallback;
 
 
         public GameService(IWebHostEnvironment environment, IServiceProvider provider)
@@ -49,21 +48,24 @@ namespace ArcadeLauncher.Services
             return infos.ToArray();
         }
 
-        public void OpenExe(GameInfo gameFolder)
+        public bool OpenExe(GameInfo gameFolder, Action CloseCallback)
         {
-            if (currentProcess is not null)
-                return;
+            if (currentProcess is not null && !currentProcess.HasExited)
+                return false;
 
             Process[] processList = Process.GetProcessesByName(gameFolder.Manifest.NameExe);
             if (processList.Length == 0)
             {
+                this.CloseCallback = CloseCallback;
                 currentProcess = Process.Start(Path.Combine(gameFolder.GamePath, gameFolder.Manifest.NameExe + ".exe"));
-
+                currentProcess.Exited += (x,e) => CloseGame();
                 handle = currentProcess.MainWindowHandle;
                 //SetForegroundWindow(handle);
+                return true;
             }
-                
-            
+            return false;
+
+
         }
 
         public string ShowImage(GameInfo gameFolder)
@@ -73,7 +75,7 @@ namespace ArcadeLauncher.Services
             {
                 return string.Empty;
             }
-                byte[] imageArray = System.IO.File.ReadAllBytes(iconpath);
+            byte[] imageArray = System.IO.File.ReadAllBytes(iconpath);
             string base64Image = Convert.ToBase64String(imageArray);
             return base64Image;
         }
@@ -83,6 +85,8 @@ namespace ArcadeLauncher.Services
 
             currentProcess?.Kill();
             currentProcess = null;
+            CloseCallback?.Invoke();
+            CloseCallback = null;
         }
     }
 }
