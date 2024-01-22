@@ -29,7 +29,7 @@ namespace ArcadeLauncher.Services
 
         private async Task CheckForDrive(CancellationToken stoppingToken)
         {
-            foreach (var drive in DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.Removable && d.IsReady && !SearchedDrives.Contains(d.VolumeLabel)))
+            foreach (var drive in DriveInfo.GetDrives().Where(d => d.IsReady && !SearchedDrives.Contains(d.VolumeLabel)))
             {
                 ScanDrive(drive, stoppingToken);
             }
