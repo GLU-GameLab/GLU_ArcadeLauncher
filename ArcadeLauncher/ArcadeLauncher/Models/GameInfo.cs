@@ -11,6 +11,7 @@ namespace ArcadeLauncher.Models
         public string GamePath { get; set; }
         public int PlayTime { get; set; }
         public DateTime LastPlayed {  get; set; }
+        public DateTime? DateAdded {  get; set; }
 
         [NotMapped]
         public GameManifest Manifest { get; set; }

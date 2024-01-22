@@ -88,11 +88,13 @@ html {
 .cat-text {
     color: white !important;
     text-align: left !important;
+    display: flex;
+    align-items: center;
     font-size: 80px;
 }
 
 #cat-new-text {
-    padding-left: 160px;
+    padding-left: 20px;
     padding-top: 55px
 }
 #cat-pop-text {
@@ -103,9 +105,10 @@ html {
 #backgroundimage {
     background: url("images/main_menu_bg.png");
     background-size: cover;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     height: 2200px;
     width: 100vw;
+
 }
 
 .info-padding{
@@ -191,7 +194,20 @@ html {
     overflow-x: hidden;
 }
 
+.no-opacity{
+    opacity:0;
+}
 
+.games-category-title::before {
+    content: "";
+    background: url(/css/images/scroll_menu_icon.png);
+    background-size: cover;
+    width: 1em;
+    height: 1em;
+    margin-right: 20px;
+    display: inline-block;
+    filter: brightness(0) saturate(100%) invert(83%) sepia(23%) saturate(777%) hue-rotate(39deg) brightness(105%) contrast(111%);
+}
 .button-center {
     position: relative;
     top: 50px
@@ -212,9 +228,11 @@ html {
 #MenuText {
     display: flex;
 }
-.games-catalouge {
+#games-catalogue {
     margin-right: -90px;
-    width:1155px;
+    width: 1155px;
+    overflow: scroll;
+    height: 85%;
 }
 
 
