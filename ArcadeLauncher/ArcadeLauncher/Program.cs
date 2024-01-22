@@ -15,8 +15,8 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbservice = scope.ServiceProvider.GetService<GamesData>();
-    dbservice?.Database.EnsureDeleted();
-    var result = dbservice?.Database.EnsureCreated();
+    //dbservice?.Database.EnsureDeleted();
+    //var result = dbservice?.Database.EnsureCreated();
 }
 
 // Configure the HTTP request pipeline.

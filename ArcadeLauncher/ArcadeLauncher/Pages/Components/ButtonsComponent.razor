@@ -39,6 +39,10 @@
 <div id="games-catalogue">
     @foreach (Category category in categories)
     {
+        if (!category.Selector.Any())
+        {
+            continue;
+        }
         <div class="games-category category" id="@category.Name">
             <div id="cat-new-text" class="font-text big-text cat-text games-category-title">
                 @category.Name
@@ -48,18 +52,15 @@
                 <div class="games-container">
                     @foreach (GameInfo game in category.Selector)
                     {
-                        for (int i = 0; i < 40; i++)
-                        {
 
-                            ObtainImage(game);
-                            <button style="" class="play-btn inner" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)">
-                                <div class="outer">
-                                    <div style="background-image: url(@imgSrc);filter: revert; --mainColor: @game.Manifest.BackgroundColor;">
-                                    </div>
+                        ObtainImage(game);
+                        <button style="" class="play-btn inner" @onfocus="() => SetInfo(game)" @onclick="() => OpenExe(game)">
+                            <div class="outer">
+                                <div style="background-image: url(@imgSrc);filter: revert; --mainColor: @game.Manifest.BackgroundColor;">
                                 </div>
-                                <div class="play-border menu-color"></div>
-                            </button>
-                        }
+                            </div>
+                            <div class="play-border menu-color"></div>
+                        </button>
                     }
                 </div>
             </div>
