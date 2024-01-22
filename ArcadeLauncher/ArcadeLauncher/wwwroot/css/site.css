@@ -142,11 +142,10 @@ html {
 
 .play-btn {
     all: unset;
-    margin: 10px;
     background-size: contain;
     background-repeat: no-repeat;
-    height: 22vh;
-    width: 16vh;
+    height: 240px;
+    width: 170px;
     display: inline-block;
     opacity: 1;
 /*    box-shadow: 0 0 10px 5px #8E8E8E;*/
@@ -233,6 +232,8 @@ html {
     width: 1155px;
     overflow: scroll;
     height: 85%;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 

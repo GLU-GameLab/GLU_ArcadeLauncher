@@ -138,34 +138,54 @@ function OffsetCurrentIndex(amount) {
 
 function Shiftrow(amount) {
 
+    QueryDocument();
+
+    rows[currentRow].index = currentIndex;
+
     currentRow = (currentRow + amount) % rows.length;
     if (currentRow < 0)
         currentRow = rows.length - 1;
 
     console.log("shift row " + rows[currentRow].id);
 
-    OffsetCurrentIndex(0);
+    currentIndex = rows[currentRow].index;
+
     QueryDocument();
+    OffsetCurrentIndex(0);
     focusSelected();
 }
 
 function focusSelected(scroll = true) {
     if (focusableElements.length > 0 && currentIndex < focusableElements.length) {
 
-        rows[currentRow].element.scrollIntoView();
+        rows[currentRow].element.parentElement.scrollTo({
+            top: 450 * currentRow,
+            left: 0,
+            behavior: "smooth",
+        });
+        console.log("changing focus");
         var focusTo = focusableElements[currentIndex];
         focusTo.focus({
-            preventScroll: !scroll
+            preventScroll: true
+        });
+        focusTo.parentElement.scrollTo({
+            top: 0,
+            left: 170 * currentIndex - (170 / 2),
+            behavior: "smooth",
         });
 
     }
 }
 
 function QueryDocument() {
-    rows = Array.from(document.querySelectorAll(".category"));
-    rows = rows.map((x) => {
-        return ({ id: x.id, index: 0, element: x})
-    });
+
+    if (rows == undefined) {
+        console.log("Gettings rows")
+        rows = Array.from(document.querySelectorAll(".category"));
+        rows = rows.map((x) => {
+            return ({ id: x.id, index: 0, element: x})
+        });
+    }
 
     focusableElements = document.querySelectorAll(
         '#' + rows[currentRow].id +' .play-btn'
