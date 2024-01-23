@@ -90,11 +90,15 @@ function updateLoop() {
 
     }
     finally {
-        if (lowertimeout) {
+        if (lowertimeout)
+        {
+            if (savedTimeout = 1) {
+                savedTimeout = 500;
+            }
             LowerTimeout();
         }
         else {
-            savedTimeout = 500;
+            savedTimeout = 1;
         }
         setTimeout(() => rAF(updateLoop), savedTimeout);
     }
