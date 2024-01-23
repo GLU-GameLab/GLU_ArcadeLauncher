@@ -6,7 +6,6 @@ var invert = 1;
 var rows;
 var savedTimeout = 500;
 var isplaying = false;
-
 window.addEventListener('gamepadconnected', function (event) {
     console.log(event);
     removeActive();
@@ -45,34 +44,43 @@ function removeActive() {
 }
 
 function updateLoop() {
+    var lowertimeout = false;
     try {
 
             for (var i = 0; i < navigator.getGamepads().length; i++) {
 
-            const gamepad = navigator.getGamepads()[i];
-            const xBoxButtonA = gamepad.buttons[0];
+                const gamepad = navigator.getGamepads()[i];
+                if (gamepad == null)
+                    continue;
+
+                const xBoxButtonA = gamepad.buttons[0];
             const xBoxButtonB = gamepad.buttons[1];
             const xBoxButton1 = gamepad.buttons[2];
             const xBoxButton2 = gamepad.buttons[3];
             const xBoxButton3 = gamepad.buttons[4];
             const xBoxButton4 = gamepad.buttons[5];
             const xBoxStickLeft = gamepad.axes[0];
+            const xBoxStickUp = gamepad.axes[1];
 
-            if (xBoxButton1.pressed) { Launch() }
 
-            var timeout = 0;
+            if (xBoxButton2.pressed) { Launch() }
+
             if (xBoxStickLeft < -0.1) {
-                timeout = savedTimeout;
-                LowerTimeout();
+                lowertimeout = true;
                 nextItem();
             }
             else if (xBoxStickLeft > 0.1) {
-                timeout = savedTimeout;
-                LowerTimeout();
+                lowertimeout = true;
                 prevItem();
-            } else {
-                savedTimeout = 500;
-            }
+                }
+                if (xBoxStickUp < -0.1) {
+                    lowertimeout = true;
+                    Shiftrow(-1);
+                }
+                else if (xBoxStickUp > 0.1) {
+                    lowertimeout = true;
+                    Shiftrow(1);
+                }
             if (xBoxButton1.pressed) {
                 //document.querySelector("#StartText").classList.add("hidden");
                 //document.querySelector("#MenuText").classList.remove("hidden");
@@ -82,7 +90,13 @@ function updateLoop() {
 
     }
     finally {
-        setTimeout(() => rAF(updateLoop), timeout);
+        if (lowertimeout) {
+            LowerTimeout();
+        }
+        else {
+            savedTimeout = 500;
+        }
+        setTimeout(() => rAF(updateLoop), savedTimeout);
     }
 
 
